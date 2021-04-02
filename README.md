@@ -1,93 +1,62 @@
-# MealBox
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-## アプリケーションの概要
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-Mealboxでは、登録しているユーザーは商品(弁当)を選択し、注文することができます。
+## About Laravel
 
-## App URL
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-現在作成中です。
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-## 制作背景
-前職での経験が元になっており、お弁当の注文を電話で行っていたため、同一の苗字の方との注文違いが発生しておりました。注文者の間違いなくなることを思って、このアプリケーションを作成したいと思いました。
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## ターゲット層
-会社で勤務している方、大規模な団体、組織をターゲットとしてアプリケーションを作成します。
+## Learning Laravel
 
-## 利用方法
-- ### 登録ユーザー
-    
-    商品(弁当)を選択し、注文することで商品管理部門へデータを送信することができます。
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-- ### 商品管理部門
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-    登録ユーザーの注文(商品名,個数,配達先)を確認することができます。
+## Laravel Sponsors
 
-## 目指した課題解決
-- 商品管理部門が商品(弁当)の注文確認ミスがなくなるようにする。
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-## 洗い出した要件
-- ### (商品管理部門) 注文者一覧表示機能
-  
-  注文者一覧表示機能を実装し、商品名、個数、配達先を確認することができるようにする。
+### Premium Partners
 
-- ### (登録ユーザー) 商品注文機能
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[Many](https://www.many.co.uk)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- **[Curotec](https://www.curotec.com/)**
+- **[OP.GG](https://op.gg)**
 
-  商品(弁当)の注文を行うことができるようにする。選択時には、商品、個数、配達先を入力し、内容を商品管理部門へ送信できるようにする。
+## Contributing
 
-# データベース設計
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## users テーブル
+## Code of Conduct
 
-| Column                | Type    | Options                   |
-| --------------------- | ------- | ------------------------- |
-| personal_id           | string  | null: false, unique:true  |
-| password              | string  | null: false               |
-| first_name            | string  | null: false               |
-| last_name             | string  | null: false               |
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-### Association
+## Security Vulnerabilities
 
-- has_many :orders
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## foods テーブル
+## License
 
-| Column             | Type        | Options                        |
-| ------------------ | ----------- | ------------------------------ |
-| name               | string      | null: false                    |
-| price              | integer     | null: false                    |
-
-### Association
-
-- has_many :orders
-
-## orders テーブル
-
-| Column         | Type       | Options                        |
-| -------------- | ---------- | ------------------------------ |
-| user           | references | null: false, foreign_key: true |
-| food           | references | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :user
-- belongs_to :food
-
-## places テーブル
-
-| Column         | Type           | Options                        |
-| -------------- | -------------  | ------------------------------ |
-| address        | string         | null: false                    |
-| order          | references     | null: false, foreign_key: true |
-
-### Association
-
-- has_one :order
-
-## 動作環境
-- PHP 8.0.3
-- Laravel 8.35.1
-- docker 20.10.5
-- docker-compose 1.28.5
-- nginx
-- mysql
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
