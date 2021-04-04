@@ -41,7 +41,7 @@ Mealboxでは、登録しているユーザーは商品(弁当)を選択し、�
 
 | Column                | Type    | Options                   |
 | --------------------- | ------- | ------------------------- |
-| personal_id           | string  | null: false, unique:true  |
+| personal_id           | string  | null: false, unique: true |
 | password              | string  | null: false               |
 | first_name            | string  | null: false               |
 | last_name             | string  | null: false               |
