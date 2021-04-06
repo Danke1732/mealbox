@@ -5,6 +5,7 @@ services:
     build: ./docker/php
     volumes:
       - ./src:/var/www
+    working_dir: /var/www/mealbox
 
   nginx:
     image: nginx
@@ -37,4 +38,4 @@ services:
     tty: true
     volumes:
       - ./src:/var/www
-    working_dir: /var/www
+    working_dir: /var/www/mealbox
