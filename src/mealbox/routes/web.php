@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +13,18 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+// ログイン未ユーザの行動制限ミドルウェア
+Route::middleware(['guest'])->group(function () {
+    // ログイン画面表示
+    Route::get('/', [AuthController::class, 'showLogin'])->name('login.show');
+    // ログイン処理
+    Route::post('login', [AuthController::class, 'login'])->name('login');
 });
+
+// ログイン済ユーザの行動制限ミドルウェア
+Route::middleware(['auth'])->group(function () {
+    // ホーム画面表示
+    Route::get('home', function() {
+        return view('home');
+    })->name('home');
+});  
