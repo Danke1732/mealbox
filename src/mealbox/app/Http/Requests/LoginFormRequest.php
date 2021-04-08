@@ -24,8 +24,8 @@ class LoginFormRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'personal_id' => 'required|unique:users',
-            // 'password' => 'required',
+            'personal_id' => 'required',
+            'password' => 'required',
         ];
     }
 }

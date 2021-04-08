@@ -8,23 +8,25 @@
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
   <!-- Styles -->
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet" >
-  <link href="{{ asset('css/signin.css') }}" rel="stylesheet" >
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/signin.css') }}" rel="stylesheet">
 </head>
 <body>
   <form class="form-signin" method="POST" action="{{ route('login') }}">
   @csrf
     <h1 class="h3 mb-3 font-weight-normal">ログインフォーム</h1>
     @if ($errors->any())
-      <div class="alert alert-danger">
-        <ul>
+      <div class="mb-3">
+        <ul class="list-group list-group-flush">
           @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
+            <li class="list-group-item list-group-item-danger">{{ $error }}</li>
           @endforeach
         </ul>
       </div>
     @endif
 
+    <x-alert type="danger" :session="session('danger')"/>
+    
     <label for="inputPersonID" class="sr-only">ユーザーID</label>
     <input type="text" id="inputPersonID" class="form-control mb-2" placeholder="Personal ID" name="personal_id" required autofocus>
     <label for="inputPassword" class="sr-only">パスワード</label>
@@ -33,4 +35,3 @@
   </form>
 </body>
 </html>
-
