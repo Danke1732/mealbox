@@ -149,6 +149,8 @@ return [
     'attributes' => [
         'personal_id' => 'ユーザーID',
         'password' => 'パスワード',
+        'last_name' => '苗字',
+        'first_name' => '名前',
     ],
 
 ];
