@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginFormRequest;
+use App\Http\Requests\SignupFormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -52,5 +55,40 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('login.show')->with('danger', 'ログアウトしました！');
+    }
+
+    /**
+     * ログインフォームの表示
+     * @return View
+     */
+    public function showSignup()
+    {
+        return view('signup.signup_form');
+    }
+
+    /**
+     * ユーザー登録処理
+     * @param App\Http\Requests\SignupFormRequest $request
+     */
+    public function signup(SignupFormRequest $request)
+    {
+        // DBインサート
+        $user = new User([
+            'personal_id' => $request->input('personal_id'),
+            'password' => Hash::make($request->input('password')),
+            'last_name' => $request->input('last_name'),
+            'first_name' => $request->input('first_name')
+        ]);
+
+        // 保存
+        $user->save();
+
+        // ログイン処理
+        $credentials = $request->only('personal_id', 'password');
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            // リダイレクト
+            return redirect()->route('home')->with('success', 'ユーザー登録が完了しました！');
+        }
     }
 }

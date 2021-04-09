@@ -9,7 +9,8 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
+  @include('shared/header')
+  <div class="container pt-4">
     <div class="mt-5">
       <x-alert type="success" :session="session('success')"/>
       <h3>プロフィール</h3>

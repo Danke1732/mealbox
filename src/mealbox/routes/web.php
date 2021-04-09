@@ -19,6 +19,10 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/', [AuthController::class, 'showLogin'])->name('login.show');
     // ログイン処理
     Route::post('login', [AuthController::class, 'login'])->name('login');
+    // ユーザー新規登録画面表示
+    Route::get('/signup', [AuthController::class, 'showSignup'])->name('signup.show');
+    // ユーザー新規登録処理
+    Route::post('user/store', [AuthController::class, 'signup'])->name('signup');
 });
 
 // ログイン済ユーザの行動制限ミドルウェア
