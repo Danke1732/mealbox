@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Food\FoodController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,7 @@ Route::middleware(['auth'])->group(function () {
     // ログアウト処理
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });  
+
+Route::get('/admin/food_form', [FoodController::class, 'showUploadForm'])->name('food.form');
+
+Route::post('/admin/upload', [FoodController::class, 'upload'])->name('food.upload');
