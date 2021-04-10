@@ -147,10 +147,15 @@ return [
     */
 
     'attributes' => [
+        // ユーザー関係
         'personal_id' => 'ユーザーID',
         'password' => 'パスワード',
         'last_name' => '苗字',
         'first_name' => '名前',
+        // 商品関係
+        'name' => '商品名',
+        'price' => '価格',
+        'description' => '商品の説明',
+        'image' => '商品の画像',
     ],
-
 ];
