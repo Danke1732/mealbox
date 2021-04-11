@@ -58,7 +58,7 @@ class AuthController extends Controller
     }
 
     /**
-     * ログインフォームの表示
+     * 新規登録フォームの表示
      * @return View
      */
     public function showSignup()
