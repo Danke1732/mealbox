@@ -42,4 +42,13 @@ class FoodController extends Controller
 
 		return redirect()->route('home');
 	}
+
+	/**
+	 * 商品一覧画面の表示
+	 */
+	public function foodList()
+	{
+		$food_list = Food::orderBy("id", "desc")->paginate(8);
+		return view('home', ["food_list" => $food_list]);
+	}
 }
