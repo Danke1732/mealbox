@@ -29,10 +29,8 @@ Route::middleware(['guest'])->group(function () {
 
 // ログイン済ユーザーの行動制限ミドルウェア
 Route::middleware(['auth'])->group(function () {
-    // ホーム画面表示
-    Route::get('home', function() {
-        return view('home');
-    })->name('home');
+    // ホーム画面表示(商品一覧画面)
+    Route::get('home', [FoodController::class, 'foodList'])->name('home');
     // ログアウト処理
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });  
