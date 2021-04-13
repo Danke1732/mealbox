@@ -30,13 +30,21 @@ class FoodController extends Controller
 			$path = $food_image->store('uploads', "public");
 			// 画像の保存後DBに記録する
 			if ($path) {
-				Food::create([
-					'name' => $request->input('name'),
-					'price' => $request->input('price'),
-					'description' => $request->input('description'),
-					'file_name' => $food_image->getClientOriginalName(),
-					'file_path' => $path,
-				]);
+				\DB::beginTransaction();
+				try {
+					Food::create([
+						'name' => $request->input('name'),
+						'price' => $request->input('price'),
+						'description' => $request->input('description'),
+						'file_name' => $food_image->getClientOriginalName(),
+						'file_path' => $path,
+					]);
+					\DB::commit();
+				} catch(\Throwable $e) {
+					\DB::rollback();
+					abort(500);
+				}
+				
 			}
 		}
 
@@ -48,7 +56,17 @@ class FoodController extends Controller
 	 */
 	public function foodList()
 	{
-		$food_list = Food::orderBy("id", "desc")->paginate(8);
+		$food_list = Food::orderBy("id", "desc")->paginate(9);
 		return view('home', ["food_list" => $food_list]);
+	}
+
+	/**
+	 * 商品を新しく掲載するためのフォームを表示
+	 * @return View
+	 */
+	public function foodDetail($id)
+	{
+		$food = Food::find($id);
+		return view('food.food_detail', ["food" => $food]);
 	}
 }

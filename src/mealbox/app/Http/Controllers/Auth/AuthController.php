@@ -72,16 +72,23 @@ class AuthController extends Controller
      */
     public function signup(SignupFormRequest $request)
     {
-        // DBインサート
-        $user = new User([
+        \DB::beginTransaction();
+        try {
+            // DBインサート
+            $user = new User([
             'personal_id' => $request->input('personal_id'),
             'password' => Hash::make($request->input('password')),
             'last_name' => $request->input('last_name'),
             'first_name' => $request->input('first_name')
-        ]);
-
-        // 保存
-        $user->save();
+            ]);
+            
+            // 保存
+            $user->save();
+            \DB::commit();
+        } catch(\Throwable $e) {
+            \DB::rollback();
+            abort(500);
+        }
 
         // ログイン処理
         $credentials = $request->only('personal_id', 'password');
