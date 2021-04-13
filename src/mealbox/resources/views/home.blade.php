@@ -2,13 +2,13 @@
 @section('title', 'ホーム画面')
 @section('content')
   <main role="main">
-  <section class="jumbotron text-center mt-5">
-    <div class="container">
-      <h1 class="jumbotron-heading">商品メニュー一覧</h1>
+  <section class="jumbotron text-center mt-5 pb-md-5 pb-2">
+    <div class="container mt-5 mt-sm-0">
+      <h1 class="jumbotron-heading pt-4 pt-md-0">商品メニュー一覧</h1>
     </div>
   </section>
 
-  <div class="album py-5 bg-light">
+  <div class="album py-3 py-md-5 bg-light">
     <div class="container">
 
       <div class="row">
@@ -22,7 +22,7 @@
               </p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-primary">詳しく見る</button>
+                  <a href="/food/{{ $food->id }}" class="btn btn-sm btn-outline-primary">詳しく見る</a>
                 </div>
               </div>
             </div>
@@ -37,14 +37,4 @@
   </div>
 
 </main>
-
-<footer class="text-muted">
-  <div class="container">
-    <p class="float-right">
-      <a href="#">Back to top</a>
-    </p>
-    <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-   
-  </div>
-</footer>
 @endsection

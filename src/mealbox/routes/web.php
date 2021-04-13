@@ -31,6 +31,8 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     // ホーム画面表示(商品一覧画面)
     Route::get('home', [FoodController::class, 'foodList'])->name('home');
+    // 詳細画面表示(商品詳細)
+    Route::get('/food/{id}', [FoodController::class, 'foodDetail'])->name('food.detail');
     // ログアウト処理
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });  
