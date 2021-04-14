@@ -7,6 +7,7 @@
 		<div class="card-body d-flex">
 			<div class="mr-2">
 				<a href="{{ route('admin.user_list') }}" class="btn btn-primary mr-1">ユーザー一覧</a>
+				<a href="{{ route('admin.food_list') }}" class="btn btn-primary mr-1">商品管理一覧</a>
 				<a href="{{ route('food.form') }}" class="btn btn-primary">商品投稿</a>
 			</div>
 

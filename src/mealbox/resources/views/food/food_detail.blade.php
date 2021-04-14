@@ -32,8 +32,8 @@
           </div>
         </div>
         <div class="mt-3">
-          <a class="btn btn-primary mr-2" href="#">購入する</a>
-          <a class="btn btn-secondary" href="{{ route('home') }}">商品一覧に戻る</a>
+          <a class="btn btn-primary mr-2 shadow-sm" href="#">購入する</a>
+          <a class="btn btn-secondary shadow-sm" href="{{ route('home') }}">商品一覧に戻る</a>
         </div>
       </div>
     </div>
