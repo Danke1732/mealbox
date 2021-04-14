@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Food;
 
 class AdminController extends Controller
 {
@@ -80,4 +81,13 @@ class AdminController extends Controller
         $user = User::find($id);
         return view("admin.user_detail", ["user" => $user]);
     }
+
+    /**
+	 * 商品管理一覧画面の表示
+	 */
+	public function adminFoodList()
+	{
+		$food_list = Food::orderBy("id", "desc")->paginate(9);
+		return view('admin.food_list', ["food_list" => $food_list]);
+	}
 }   
