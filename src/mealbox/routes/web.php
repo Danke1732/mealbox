@@ -43,6 +43,12 @@ Route::group(['middleware' => ['auth.admin']], function () {
     Route::get('/admin/food_form', [FoodController::class, 'showUploadForm'])->name('food.form');
     // food登録処理
     Route::post('/admin/upload', [FoodController::class, 'upload'])->name('food.upload');
+    // food更新処理
+    Route::get('/admin/food_edit/{id}', [FoodController::class, 'foodEdit'])->name('food.edit');
+    // food編集フォーム画面表示
+    Route::post('/admin/food_update', [FoodController::class, 'foodUpdate'])->name('food.update');
+    // 商品管理一覧
+    Route::get('/admin/food_list', [AdminController::class, 'adminFoodList'])->name('admin.food_list');
     // 管理者側トップ
     Route::get('/admin', [AdminController::class, 'show'])->name('admin.top');
     // ログアウト実行
