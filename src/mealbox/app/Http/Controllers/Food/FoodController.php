@@ -50,7 +50,7 @@ class FoodController extends Controller
 			}
 		}
 
-		return redirect()->route('home');
+		return redirect()->route('admin.food_list');
 	}
 
 	/**

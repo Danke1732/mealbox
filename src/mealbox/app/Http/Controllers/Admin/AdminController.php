@@ -43,7 +43,6 @@ class AdminController extends Controller
      * Adminユーザーをアプリケーションからログアウトさせる
      *
      * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
      */
     function logout(Request $request)
     {
@@ -90,4 +89,21 @@ class AdminController extends Controller
 		$food_list = Food::orderBy("id", "desc")->paginate(9);
 		return view('admin.food_list', ["food_list" => $food_list]);
 	}
+
+    /**
+     * 商品の削除処理
+     *
+     * @param  int $id
+     * @return view
+     */
+    function exeDelete($id)
+    {
+        try {
+            Food::destroy($id);
+        } catch(\Throwable $e) {
+            abort(500);
+        }
+
+        return redirect()->route('admin.food_list')->with('success', '商品を削除しました！');
+    }
 }   
