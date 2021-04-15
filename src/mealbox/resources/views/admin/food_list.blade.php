@@ -7,7 +7,7 @@
       <h1 class="jumbotron-heading pt-4 pt-md-0">商品メニュー一覧</h1>
     </div>
   </section>
-
+  <x-alert type="success" :session="session('success')"/>
   <div class="album py-3 py-md-5 bg-light">
     <div class="container">
 
@@ -22,8 +22,12 @@
               </p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <a href="/food/{{ $food->id }}" class="btn btn-sm btn-outline-primary">詳細</a>
-                  <a href="/admin/food_edit/{{ $food->id }}" class="btn btn-sm btn-outline-primary">編集</a>
+                  <a href="/food/{{ $food->id }}" class="btn btn-sm btn-outline-primary mr-2 rounded">詳細</a>
+                  <a href="/admin/food_edit/{{ $food->id }}" class="btn btn-sm btn-outline-primary mr-2 rounded">編集</a>
+                  <form action="{{ route('admin.food_delete', $food->id) }}" method="POST" onSubmit="return checkDelete()">
+                    @csrf
+                    <button type="submit" class="btn btn-sm btn-outline-danger rounded" onclick=>削除</button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -38,4 +42,13 @@
   </div>
 
 </main>
+<script>
+  function checkDelete() {
+    if (confirm('削除してよろしいですか？')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+</script>
 @endsection

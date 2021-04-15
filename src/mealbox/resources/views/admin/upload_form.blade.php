@@ -37,18 +37,18 @@
         <div class="row">
           <div class="col-md-6 mb-3 form-group">
             <label for="foodName">商品名</label>
-            <input type="string" name="name" class="form-control" id="foodName" placeholder="特からあげ弁当" required autofocus>
+            <input type="string" name="name" class="form-control" id="foodName" placeholder="(例) 特からあげ弁当" required autofocus>
           </div>
 
           <div class="col-md-6 mb-3 form-group">
             <label for="price">価格</label>
-            <input type="number" name="price" class="form-control" id="price" min="0" placeholder="540" required>
+            <input type="number" name="price" class="form-control" id="price" min="0" placeholder="(例) 540" required>
           </div>
         </div>
 
         <div class="mb-3 form-group">
           <label for="description">商品の説明</label>
-          <textarea name="description" class="form-control" id="description" placeholder="商品の説明" required></textarea>
+          <textarea name="description" class="form-control" id="description" placeholder="(例) 商品の説明です。" required></textarea>
         </div>
 
         <div class="mt-3 mb-4 form-group">

@@ -49,6 +49,8 @@ Route::group(['middleware' => ['auth.admin']], function () {
     Route::post('/admin/food_update', [FoodController::class, 'foodUpdate'])->name('food.update');
     // 商品管理一覧
     Route::get('/admin/food_list', [AdminController::class, 'adminFoodList'])->name('admin.food_list');
+    // food削除処理
+    Route::post('/admin/food_delete/{id}', [AdminController::class, 'exeDelete'])->name('admin.food_delete');
     // 管理者側トップ
     Route::get('/admin', [AdminController::class, 'show'])->name('admin.top');
     // ログアウト実行
