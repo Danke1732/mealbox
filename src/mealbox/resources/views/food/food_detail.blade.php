@@ -32,11 +32,25 @@
           </div>
         </div>
         <div class="mt-3">
-          <a class="btn btn-primary mr-2 shadow-sm" href="#">購入する</a>
+          <form action="{{ route('order.purchase') }}" method="POST" onSubmit="return checkOrder()" class="d-inline">
+            @csrf
+            <input type="hidden" name="userId" value="{{ Auth::id() }}">
+            <input type="hidden" name="foodId" value="{{ $food->id }}">
+            <button class="btn btn-primary mr-2 shadow-sm">購入する</button>
+          </form>
           <a class="btn btn-secondary shadow-sm" href="{{ route('home') }}">商品一覧に戻る</a>
         </div>
       </div>
     </div>
   </div>
 </main>
+<script>
+  function checkOrder() {
+    if (confirm('この商品を購入しますか？')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+</script>
 @endsection

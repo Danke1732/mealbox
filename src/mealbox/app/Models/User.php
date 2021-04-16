@@ -11,6 +11,14 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
+     * ユーザーの注文情報を取得
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array

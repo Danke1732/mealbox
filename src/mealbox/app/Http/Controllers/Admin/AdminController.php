@@ -27,7 +27,8 @@ class AdminController extends Controller
         // 内容の確認
         $user_id = $request->input('user_id');
         $password = $request->input('password');
-        if ($user_id === "laravel" && $password == "laravel") {
+
+        if ($user_id === config('admin.admin_id') && $password === config('admin.admin_pass')) {
             // ログインの成功
             $request->session()->put("admin_auth", true);
             return redirect()->route("admin.top");
