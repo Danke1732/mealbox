@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Food\FoodController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Order\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/food/{id}', [FoodController::class, 'foodDetail'])->name('food.detail');
     // ログアウト処理
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+    // 商品購入処理
+    Route::post('/purchase', [OrderController::class, 'purchase'])->name('order.purchase');
 });  
 
 // ログイン済み管理者ユーザーの行動制限ミドルウェア
