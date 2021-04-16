@@ -1,6 +1,6 @@
 <header class="fixed-top p-md-3 p-sm-1 px-md-4 bg-white border-bottom shadow-sm">
   <div class="d-md-flex flex-md-row align-items-center text-center">
-    <h2 class="my-0 mr-md-auto font-weight-normal">MealBox</h2>
+    <h2 class="my-0 mr-md-auto font-weight-normal"><a href="{{ route('home') }}" class="text-dark" style="text-decoration: none;">MealBox</a></h2>
     <nav class="my-2 my-md-0 mr-md-3">
       <a class="p-2 text-dark" href="#">マイページ</a>
       <a class="btn btn-outline-primary ml-1" href="{{ route('admin.showLogin') }}">管理者ページ</a>
