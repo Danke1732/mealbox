@@ -15,7 +15,7 @@
 				@endforeach
 			</ul>
 
-			<div class="mt-3">
+			<div class="mt-3 mx-auto">
 				{{ $user_list->links() }}
 			</div>
 		</div>
