@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Food;
+use App\Models\Order;
 
 class AdminController extends Controller
 {
@@ -92,6 +93,18 @@ class AdminController extends Controller
 	}
 
     /**
+     * 管理側注文管理一覧表示
+     * @return View
+     */
+    function adminOrderList()
+    {
+        $order_list = Order::orderBy("id", "desc")->paginate(9);
+        $order_total_price = Order::sum("total_price");
+        $order_num = Order::sum("number");
+        return view("admin.order_list", ["order_list" => $order_list, "order_total_price" => $order_total_price, "order_num" => $order_num]);
+    }
+
+    /**
      * 商品の削除処理
      *
      * @param  int $id
@@ -106,5 +119,21 @@ class AdminController extends Controller
         }
 
         return redirect()->route('admin.food_list')->with('success', '商品を削除しました！');
+    }
+
+    /**
+     * 商品の削除処理
+     * @param  int $id
+     * @return view
+     */
+    function adminOrderDelete($id)
+    {
+        try {
+            Order::destroy($id);
+        } catch(\Throwable $e) {
+            abort(500);
+        }
+
+        return redirect()->route('admin.top');
     }
 }   
