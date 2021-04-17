@@ -52,6 +52,10 @@ Route::group(['middleware' => ['auth.admin']], function () {
     Route::post('/admin/food_update', [FoodController::class, 'foodUpdate'])->name('food.update');
     // 商品管理一覧
     Route::get('/admin/food_list', [AdminController::class, 'adminFoodList'])->name('admin.food_list');
+    // 注文管理一覧
+    Route::get('/admin/order_list', [AdminController::class, 'adminOrderList'])->name('admin.order_list');
+    // 注文削除
+    Route::post('/admin/order_delete/{id}', [AdminController::class, 'adminOrderDelete'])->name('admin.order_delete');
     // food削除処理
     Route::post('/admin/food_delete/{id}', [AdminController::class, 'exeDelete'])->name('admin.food_delete');
     // 管理者側トップ
