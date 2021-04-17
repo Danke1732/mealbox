@@ -8,6 +8,7 @@
 			<div class="mr-2">
 				<a href="{{ route('admin.user_list') }}" class="btn btn-primary mb-1 mb-sm-0 mr-1">ユーザー一覧</a>
 				<a href="{{ route('admin.food_list') }}" class="btn btn-primary mb-1 mb-sm-0 mr-1">商品管理一覧</a>
+				<a href="{{ route('admin.order_list') }}" class="btn btn-primary mb-1 mb-sm-0 mr-1">注文管理一覧</a>
 				<a href="{{ route('food.form') }}" class="btn btn-primary">商品投稿</a>
 			</div>
 
