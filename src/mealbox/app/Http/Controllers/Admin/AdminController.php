@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Food;
 use App\Models\Order;
+use JD\Cloudder\Facades\Cloudder;
 
 class AdminController extends Controller
 {
@@ -112,7 +113,11 @@ class AdminController extends Controller
      */
     function exeDelete($id)
     {
+        $food = Food::find($id);
         try {
+            if (isset($food->file_name)) {
+                Cloudder::destroyImage($food->file_name);
+            }
             Food::destroy($id);
         } catch(\Throwable $e) {
             abort(500);
@@ -122,7 +127,7 @@ class AdminController extends Controller
     }
 
     /**
-     * 商品の削除処理
+     * 商品の注文削除処理
      * @param  int $id
      * @return view
      */

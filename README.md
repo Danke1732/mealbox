@@ -21,7 +21,11 @@ Mealboxでは、登録しているユーザーは商品(弁当)を選択し、�
 
 - ### 商品管理部門
 
-    登録ユーザーの注文(商品名,個数,配達先)を確認することができます。
+    - 登録ユーザーの注文内容(商品名,個数,配達先)を確認することができます。
+
+    - 登録ユーザーの一覧を確認をすることができる。
+
+    - 注文された内容を削除することができる。
 
 ## 目指した課題解決
 - 商品管理部門が商品(弁当)の注文確認ミスがなくなるようにする。
@@ -48,30 +52,35 @@ Mealboxでは、登録しているユーザーは商品(弁当)を選択し、�
 
 ### Association
 
-- has_many :orders
+- hasMany :orders
 
 ## foods テーブル
 
 | Column             | Type        | Options                        |
 | ------------------ | ----------- | ------------------------------ |
-| name               | string      | null: false                    |
-| price              | integer     | null: false                    |
+| name               | string      | null: false, max:100           |
+| description        | text        | null: false                    |
+| price              | integer     | null: false, unsigned          |
+| file_name          | string      | null: false                    |
+| file_path          | string      | null: false                    |
 
 ### Association
 
-- has_many :orders
+- hasMany :orders
 
 ## orders テーブル
 
-| Column         | Type       | Options                        |
-| -------------- | ---------- | ------------------------------ |
-| user           | references | null: false, foreign_key: true |
-| food           | references | null: false, foreign_key: true |
+| Column         | Type                   | Options                        |
+| -------------- | ---------------------- | ------------------------------ |
+| user           | bigInteger(references) | foreign_key: true, unsigned    |
+| food           | bigInteger(references) | foreign_key: true, unsigned    |
+| number         | integer                | null: false, unsigned          |
+| total_price    | integer                | null: false, unsigned          |
 
 ### Association
 
-- belongs_to :user
-- belongs_to :food
+- belongsTo :user
+- belongsTo :food
 
 ## places テーブル
 
@@ -82,7 +91,7 @@ Mealboxでは、登録しているユーザーは商品(弁当)を選択し、�
 
 ### Association
 
-- has_one :order
+- hasOne :order
 
 ## 動作環境
 - PHP 8.0.3

@@ -12,7 +12,7 @@
     <div class="container d-md-flex justify-content-between">
 
       <div class="col-sm-8 mx-auto col-md-6 mb-3">
-        <img src="{{ Storage::url($food->file_path) }}" alt="画像" width="100%" height="200" background="#55595c" color="#eceeef" class="img-thumbnail img-fluid">
+        <img src="{{ $food->file_path }}" alt="画像" width="100%" height="200" background="#55595c" color="#eceeef" class="img-thumbnail img-fluid">
       </div>
 
       <div class="col-sm-8 mx-auto col-md-6">
