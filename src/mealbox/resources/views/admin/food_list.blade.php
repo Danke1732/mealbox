@@ -15,7 +15,7 @@
         @foreach ($food_list as $food)
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
-            <img src="{{ Storage::url($food->file_path) }}" alt="画像" width="100%" height="225" background="#55595c" color="#eceeef" class="card-img-top" style="object-fit: cover;">
+            <img src="{{ $food->file_path }}" alt="画像" width="100%" height="225" background="#55595c" color="#eceeef" class="card-img-top" style="object-fit: cover;">
             <div class="card-body">
               <p class="card-text">
                 {{ $food->name }}

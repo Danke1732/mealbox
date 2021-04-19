@@ -8,6 +8,7 @@ use App\Http\Requests\FoodCreateRequest;
 use App\Models\Food;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\FoodUpdateRequest;
+use JD\Cloudder\Facades\Cloudder;
 
 class FoodController extends Controller
 {
@@ -22,35 +23,44 @@ class FoodController extends Controller
 
 	/**
 	 * 商品のアップロード処理
-	 * @param App\Http\Requests\FoodCreateFormRequest $request
+	 * @param App\Http\Requests\FoodCreateRequest $request
 	 */
 	public function upload(FoodCreateRequest $request)
 	{
+		// 送られてきた画像データを取得
 		$food_image = $request->file('image');
 		if ($food_image) {
-			// 送られてきた画像を保存する
-			$path = $food_image->store('uploads', "public");
+			// アップロードされたファイルの絶対パスを取得
+			$img = $food_image->getRealPath();
+			// Cloudinaryへアップロード
+			Cloudder::upload($img, null);
+			// 直前にcloudinaryにアップロードされた画像の名前を取得
+			$publicId = Cloudder::getPublicId();
+			// 上で取得した名前を取得した画像のurlを生成する
+			$logoUrl = Cloudder::secureShow($publicId, [
+				// 保存される際の画像の幅、高さ指定
+				'width' => 500,
+				'height' => 400,
+			]);
+
 			// 画像の保存後DBに記録する
-			if ($path) {
-				\DB::beginTransaction();
-				try {
-					Food::create([
-						'name' => $request->input('name'),
-						'price' => $request->input('price'),
-						'description' => $request->input('description'),
-						'file_name' => $food_image->getClientOriginalName(),
-						'file_path' => $path,
-					]);
-					\DB::commit();
-				} catch(\Throwable $e) {
-					\DB::rollback();
-					abort(500);
-				}
-				
+			\DB::beginTransaction();
+			try {
+				Food::create([
+					'name' => $request->input('name'),
+					'price' => $request->input('price'),
+					'description' => $request->input('description'),
+					'file_name' => $publicId,
+					'file_path' => $logoUrl,
+				]);
+				\DB::commit();
+			} catch(\Throwable $e) {
+				\DB::rollback();
+				abort(500);
 			}
 		}
 
-		return redirect()->route('admin.food_list');
+		return redirect()->route('admin.food_list')->with('success', '商品の投稿が完了しました。');
 	}
 
 	/**
@@ -95,15 +105,27 @@ class FoodController extends Controller
 		// 送られてきたデータを元に更新処理
 		\DB::beginTransaction();
 		try {
-			if (isset($inputs['image']) === true && $food['file_name'] !== $inputs['image']->getClientOriginalName()) {
+			// 画像についての更新を行うかチェック
+			if (isset($inputs['image']) === true) {
 				// 元の画像を削除
-				Storage::delete('/public/uploads/' . $food['file_name']);
+				if (isset($food->file_name)) {
+					Cloudder::destroyImage($food->file_name);
+				}
 				// 新しい画像を保存
-				$path = $inputs['image']->store('uploads', "public");
+				$img = $inputs['image']->getRealPath();
+				// Cloudinaryへアップロード
+				Cloudder::upload($img, null);
+				// 直前にcloudinaryにアップロードされた画像の名前を取得
+				$publicId = Cloudder::getPublicId();
+				// 上で取得した名前を取得した画像のurlを生成する
+				$logoUrl = Cloudder::secureShow($publicId, [
+					'width' => 500,
+				'height' => 400,
+				]);
 				// 画像情報の内容を更新
 				$food->fill([
-					'file_name' => $inputs['image']->getClientOriginalName(),
-					'file_path' => $path,
+					'file_name' => $publicId,
+					'file_path' => $logoUrl,
 				]);
 			}
 			// 画像以外の内容を更新
@@ -121,7 +143,7 @@ class FoodController extends Controller
 			echo $e;
 			abort(500);
 		}
-		// ホーム画面へリダイレクト
-		return redirect()->route('admin.food_list');
+		// 商品管理一覧へリダイレクト
+		return redirect()->route('admin.food_list')->with('success', '商品の更新が完了しました。');
 	}
 }
