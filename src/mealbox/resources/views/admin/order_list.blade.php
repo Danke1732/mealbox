@@ -26,9 +26,9 @@
               <td>{{ $order->number }}</td>
               <td>{{ $order->total_price }}</td>
               <td>
-                <form action="{{ route('admin.order_delete', $order->id) }}" method="POST">
+                <form action="{{ route('admin.order_delete', $order->id) }}" method="POST" onSubmit="return checkDelete()">
                   @csrf
-                  <button class="btn btn-danger" type="submit">削除</button>
+                  <button class="btn btn-danger" type="submit" onclick=>削除</button>
                 </form>
               </td>
             </tr>
@@ -52,4 +52,13 @@
   </div>
 		
 </div>
+<script>
+  function checkDelete() {
+    if (confirm('削除してよろしいですか？')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+</script>
 @endsection
