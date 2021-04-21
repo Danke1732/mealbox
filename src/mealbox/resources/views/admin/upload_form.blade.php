@@ -56,7 +56,7 @@
           <input type="file" name="image" class="d-sm-block" id="image" accept="image/png, image/jpeg" required>
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block mx-auto col-sm-6 mb-5" type="submit">登録する</button>
+        <button class="btn btn-lg btn-primary btn-block shadow-sm mx-auto col-sm-6 mb-5" type="submit">登録する</button>
       </form>
     </div>
   </div>

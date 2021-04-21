@@ -99,4 +99,4 @@ Mealboxでは、登録しているユーザーは商品(弁当)を選択し、�
 - docker 20.10.5
 - docker-compose 1.28.5
 - nginx
-- mysql
+- mysql Ver 14.14
