@@ -34,6 +34,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('home', [FoodController::class, 'foodList'])->name('home');
     // 詳細画面表示(商品詳細)
     Route::get('/food/{id}', [FoodController::class, 'foodDetail'])->name('food.detail');
+    // 詳細画面表示(ログインユーザー情報詳細)
+    Route::get('/user/{id}', [AuthController::class, 'userDetail'])->name('userDetail');
     // ログアウト処理
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
     // 商品購入処理
