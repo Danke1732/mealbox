@@ -114,6 +114,11 @@ class AdminController extends Controller
     function exeDelete($id)
     {
         $food = Food::find($id);
+
+        if (is_null($food)) {
+            return redirect()->route('home')->with('danger', '商品が見つかりませんでした。');
+        }
+
         try {
             if (isset($food->file_name)) {
                 Cloudder::destroyImage($food->file_name);
