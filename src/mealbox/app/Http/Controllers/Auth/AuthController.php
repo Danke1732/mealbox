@@ -98,4 +98,19 @@ class AuthController extends Controller
             return redirect()->route('home')->with('success', 'ユーザー登録が完了しました！');
         }
     }
+
+    /**
+	 * ログインユーザー詳細情報を表示
+	 * @return View
+	 */
+	public function userDetail($id)
+	{
+		$user = User::findOrFail($id);
+        $auth_user = Auth::user();
+        if ($user->id === $auth_user->id) {
+            return view('user_detail', ["user" => $user]);
+        }
+
+        return redirect()->route('home');
+	}
 }

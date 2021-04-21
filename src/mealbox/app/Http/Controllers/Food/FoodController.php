@@ -73,7 +73,7 @@ class FoodController extends Controller
 	}
 
 	/**
-	 * 商品を新しく掲載するためのフォームを表示
+	 * 商品詳細を表示
 	 * @return View
 	 */
 	public function foodDetail($id)
