@@ -36,6 +36,22 @@
             @csrf
             <input type="hidden" name="userId" value="{{ Auth::id() }}">
             <input type="hidden" name="foodId" value="{{ $food->id }}">
+            @if ($errors->any())
+              <div class="mb-3">
+                <ul class="list-group list-group-flush">
+                  @foreach ($errors->all() as $error)
+                    <li class="list-group-item list-group-item-danger p-2">{{ $error }}</li>
+                  @endforeach
+                </ul>
+              </div>
+            @endif
+            <label for="address">配達先指定(必須)</label>
+            <select name="address" class="form-control mb-2">
+              <option value="">選択</option>
+              @foreach ($addresses as $address)
+              <option value="{{ $address }}">{{ $address }}</option>
+              @endforeach
+            </select>
             <button class="btn btn-primary mr-2 shadow-sm">購入する</button>
           </form>
           <a class="btn btn-secondary shadow-sm" href="{{ route('home') }}">商品一覧に戻る</a>
