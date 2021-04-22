@@ -26,6 +26,7 @@ class OrderFormRequest extends FormRequest
         return [
             'userId' => 'required',
             'foodId' => 'required',
+            'address' => 'required',
         ];
     }
 }
