@@ -157,5 +157,10 @@ return [
         'price' => '価格',
         'description' => '商品の説明',
         'image' => '商品の画像',
+        // 注文関係
+        'number' => '個数',
+        'total_price' => '合計額',
+        // 配達先関係
+        'address' => '送り先',
     ],
 ];

@@ -81,6 +81,7 @@ Mealboxでは、登録しているユーザーは商品(弁当)を選択し、�
 
 - belongsTo :user
 - belongsTo :food
+- hasOne :place
 
 ## places テーブル
 
@@ -90,8 +91,6 @@ Mealboxでは、登録しているユーザーは商品(弁当)を選択し、�
 | order          | references     | null: false, foreign_key: true |
 
 ### Association
-
-- hasOne :order
 
 ## 動作環境
 - PHP 8.0.3

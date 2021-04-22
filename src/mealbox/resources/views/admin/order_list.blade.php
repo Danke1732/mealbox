@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 @section('title', '管理者注文一覧')
 @section('content')
-<div class="container mt-5 mt-md-0">
-  <div class="row pt-5 mt-5">
-    <div class="col-md-12 pt-5 pt-md-0 mt-5 mt-md-0">
-    <div class="card pt-5 pt-md-0 mt-5 mt-md-0">
+<div class="container" style="min-width: 900px;">
+  <div class="row">
+    <div class="col-md-12">
+    <div class="card">
 		  <h3 class="card-header">注文情報一覧</h3>
-		  <div class="card-body p-2">
+		  <div class="card-body p-2 pt-3">
         <table class="table table-striped table-bordered border">
             <tr>
               <th>注文番号</th>
@@ -15,6 +15,7 @@
               <th>注文時刻</th>
               <th>数量 (個)</th>
               <th>金額 (円)</th>
+              <th>配達先</th>
               <th></th>
             </tr>
             @foreach($order_list as $order)
@@ -25,6 +26,7 @@
               <td>{{ $order->created_at }}</td>
               <td>{{ $order->number }}</td>
               <td>{{ $order->total_price }}</td>
+              <td>{{ $order->place->address }}</td>
               <td>
                 <form action="{{ route('admin.order_delete', $order->id) }}" method="POST" onSubmit="return checkDelete()">
                   @csrf
@@ -40,6 +42,7 @@
               <td></td>
               <td>{{ $order_num }}</td>
               <td>{{ $order_total_price }}</td>
+              <td></td>
               <td></td>
             </tr>
         </table>
