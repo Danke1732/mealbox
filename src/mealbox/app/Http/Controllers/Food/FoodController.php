@@ -79,7 +79,8 @@ class FoodController extends Controller
 	public function foodDetail($id)
 	{
 		$food = Food::findOrFail($id);
-		return view('food.food_detail', ["food" => $food]);
+		$addresses = config('place.addresses');
+		return view('food.food_detail', ["food" => $food, "addresses" => $addresses]);
 	}
 
 	/**

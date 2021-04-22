@@ -25,6 +25,14 @@ class Order extends Model
         return $this->belongsTo(Food::class);
     }
 
+    /**
+     * 商品情報を所有している配達先を取得
+     */
+    public function place()
+    {
+        return $this->hasOne(Place::class);
+    }
+
     protected $table = "orders";
     protected $fillable = [
         'user_id',
