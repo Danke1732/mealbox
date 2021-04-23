@@ -2,7 +2,7 @@
 @section('title', 'ホーム画面')
 @section('content')
   <main role="main">
-  <section class="jumbotron text-center mt-5 mb-0 pb-md-5 pb-2">
+  <section class="jumbotron text-center mt-5 mb-0 pb-md-5 pb-2" style="background-image: url('{{ asset('title-image.jpg') }}'); background-size: cover; background-color:rgba(255,255,255,0.4); background-blend-mode:lighten; border-radius: 0;">
     <div class="container mt-5 mt-sm-0">
       <h1 class="jumbotron-heading pt-4 pt-md-0">商品メニュー一覧</h1>
     </div>

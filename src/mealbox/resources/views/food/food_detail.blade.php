@@ -2,7 +2,7 @@
 @section('title',"-- " . $food->name . "の情報詳細 --")
 @section('content')
   <main role="main">
-  <section class="jumbotron text-center mt-5 pb-md-5 pb-2">
+  <section class="jumbotron text-center mt-5 pb-md-5 pb-2" style="background-image: url('{{ asset('title-image.jpg') }}'); background-size: cover; background-color:rgba(255,255,255,0.4); background-blend-mode:lighten; border-radius: 0;">
     <div class="container mt-5 mt-sm-0">
       <h1 class="jumbotron-heading pt-4 pt-md-0">{{ $food->name }}</h1>
     </div>
@@ -46,7 +46,7 @@
               </div>
             @endif
             <label for="address">配達先指定(必須)</label>
-            <select name="address" class="form-control mb-2">
+            <select name="address" class="form-control mb-3">
               <option value="">選択</option>
               @foreach ($addresses as $address)
               <option value="{{ $address }}">{{ $address }}</option>

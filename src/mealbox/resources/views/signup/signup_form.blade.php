@@ -11,10 +11,10 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('css/signin.css') }}" rel="stylesheet">
 </head>
-<body>
+<body style="background: url('{{ asset('home-image.jpg') }}'); background-size: cover; background-size: cover; background-color:rgba(255,255,255,0.2); background-blend-mode:lighten;">
   @include('shared/header')
   <x-alert type="danger" :session="session('danger')"/>
-  <form class="form-signin mt-5" method="POST" action="{{ route('signup') }}">
+  <form class="form-signin mt-5 bg-white rounded" method="POST" action="{{ route('signup') }}">
   @csrf
     <h1 class="h3 mb-3 font-weight-normal">ユーザー登録フォーム</h1>
     @if ($errors->any())
@@ -39,8 +39,8 @@
     <label for="inputFirst_name">名前</label>
     <input type="text" id="inputFirst_name" name="first_name" class="form-control mb-3" placeholder="花太郎" required>
 
-    <button class="btn btn-lg btn-primary btn-block mb-2" type="submit">登録する</button>
-    <a href="/" class="btn btn-lg btn-success btn-block">ログイン</a>
+    <button class="btn btn-lg btn-primary btn-block mb-2 shadow-sm" type="submit">登録する</button>
+    <a href="/" class="btn btn-lg btn-success btn-block shadow-sm">ログイン</a>
   </form>
 </body>
 </html>

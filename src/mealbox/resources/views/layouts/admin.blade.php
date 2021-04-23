@@ -12,7 +12,7 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('css/signin.css') }}" rel="stylesheet">
 </head>
-<body>
+<body style="background: url('{{ asset('admin-image.jpg') }}'); background-size: cover; background-color:rgba(255,255,255,0.3); background-blend-mode:lighten;">
   @include('shared/header')
   @yield('content')
   

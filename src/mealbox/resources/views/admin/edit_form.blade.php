@@ -11,15 +11,15 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('css/form-validation.css') }}" rel="stylesheet">
 </head>
-<body>
+<body style="background-image: url('{{ asset('edit-form-image.jpg') }}'); background-size: cover; background-color:rgba(255, 255, 255, 0.3); background-blend-mode:lighten; border-radius: 0;">
   @include('shared/header')
   <div class="container" style="margin-top: 110px;">
-  <div class="py-5 text-center">
+  <div class="py-3 text-center">
     <h2>商品編集フォーム</h2>
     <p class="lead">下記の入力欄に必要な商品情報の変更内容を入力してください。</p>
   </div>
 
-  <div class="row">
+  <div class="row bg-white rounded p-3 mb-5">
     <div class="col-md-12 order-md-1">
       <h4 class="mb-3">商品の設定</h4>
       @if (count($errors) > 0)
@@ -57,7 +57,7 @@
           <input type="file" name="image" class="d-sm-block" id="image" accept="image/png, image/jpeg">
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block shadow-sm mx-auto col-sm-6 mb-5" type="submit">更新する</button>
+        <button class="btn btn-lg btn-primary btn-block shadow-sm mx-auto col-sm-6" type="submit">更新する</button>
       </form>
     </div>
   </div>
