@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('title', '管理者ログインフォーム')
 @section('content')
-<form class="form-signin" method="POST" action="{{ route('admin.login') }}">
+<form class="form-signin bg-white rounded" method="POST" action="{{ route('admin.login') }}" autocomplete="off">
 @csrf
   <h1 class="h3 mb-3 font-weight-normal">管理者ログインフォーム</h1>
   @if ($errors->any())

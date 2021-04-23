@@ -11,9 +11,9 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('css/signin.css') }}" rel="stylesheet">
 </head>
-<body>
+<body style="background-image: url('{{ asset('home-image.jpg') }}'); background-size: cover; background-color:rgba(255,255,255,0.2); background-blend-mode:lighten;">
   @include('shared/header')
-  <form class="form-signin" method="POST" action="{{ route('login') }}">
+  <form class="form-signin bg-white rounded" method="POST" action="{{ route('login') }}" autocomplete="off">
   @csrf
     <h1 class="h3 mb-3 font-weight-normal">ログインフォーム</h1>
     @if ($errors->any())
@@ -32,8 +32,8 @@
     <input type="text" id="inputPersonID" class="form-control mb-2" placeholder="Personal ID" name="personal_id" required autofocus>
     <label for="inputPassword" class="sr-only">パスワード</label>
     <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
-    <button class="btn btn-lg btn-primary btn-block mb-2" type="submit">ログイン</button>
-    <a href="/signup" class="btn btn-lg btn-success btn-block">ユーザー登録</a>
+    <button class="btn btn-lg btn-primary btn-block mb-2 shadow-sm" type="submit">ログイン</button>
+    <a href="/signup" class="btn btn-lg btn-success btn-block shadow-sm">ユーザー登録</a>
   </form>
 </body>
 </html>

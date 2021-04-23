@@ -161,6 +161,6 @@ return [
         'number' => '個数',
         'total_price' => '合計額',
         // 配達先関係
-        'address' => '送り先',
+        'address' => '配達先',
     ],
 ];
