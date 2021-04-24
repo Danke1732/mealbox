@@ -33,6 +33,22 @@ services:
     ports:
       - 3306:3306
 
+  db-test:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: test_root
+      MYSQL_DATABASE: test_mealbox
+      MYSQL_USER: test_docker
+      MYSQL_PASSWORD: test_docker
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./docker/db-test/data:/var/lib/mysql
+      - ./docker/db-test/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./docker/db-test/sql:/docker-entrypoint-initdb.d
+    ports:
+      - 3100:3306
+
   node:
     image: node:12.13-alpine
     tty: true
