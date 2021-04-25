@@ -48,15 +48,15 @@ Route::group(['middleware' => ['auth.admin']], function () {
     Route::get('/admin/food_form', [FoodController::class, 'showUploadForm'])->name('food.form');
     // food登録処理
     Route::post('/admin/upload', [FoodController::class, 'upload'])->name('food.upload');
-    // food更新処理
-    Route::get('/admin/food_edit/{id}', [FoodController::class, 'foodEdit'])->name('food.edit');
     // food編集フォーム表示
+    Route::get('/admin/food_edit/{id}', [FoodController::class, 'foodEdit'])->name('food.edit');
+    // food更新処理
     Route::post('/admin/food_update', [FoodController::class, 'foodUpdate'])->name('food.update');
     // 商品管理一覧
     Route::get('/admin/food_list', [AdminController::class, 'adminFoodList'])->name('admin.food_list');
     // 注文管理一覧
     Route::get('/admin/order_list', [AdminController::class, 'adminOrderList'])->name('admin.order_list');
-    // 注文削除
+    // order削除処理
     Route::post('/admin/order_delete/{id}', [AdminController::class, 'adminOrderDelete'])->name('admin.order_delete');
     // food削除処理
     Route::post('/admin/food_delete/{id}', [AdminController::class, 'exeDelete'])->name('admin.food_delete');
