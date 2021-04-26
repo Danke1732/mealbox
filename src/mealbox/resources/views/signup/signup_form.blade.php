@@ -8,7 +8,7 @@
   <!-- Scripts -->
   <script src="{{ secure_asset('/js/app.js') }}" defer></script>
   <!-- Styles -->
-  @if (app('env') == 'production')
+  @if (app('env') == 'heroku')
     <link href="{{ secure_asset('/css/app.css') }}" rel="stylesheet">
     <link href="{{ secure_asset('/css/signin.css') }}" rel="stylesheet">
   @else

@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
         /**
          * 本番環境https化
          */
-        if (\App::environment('production')) {
+        if (\App::environment('heroku')) {
             \URL::forceScheme('https');
         }
     }
