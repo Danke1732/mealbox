@@ -6,7 +6,7 @@ Mealboxでは、登録しているユーザーは商品(弁当)を選択し、�
 
 ## App URL
 
-現在作成中です。
+[https://mealbox-app.herokuapp.com/](https://mealbox-app.herokuapp.com/ "MealBox")
 
 ## 制作背景
 前職での経験が元になっており、お弁当の注文を電話で行っていたため、同一の苗字の方との注文違いが発生しておりました。注文者の間違いなくなることを思って、このアプリケーションを作成したいと思いました。
@@ -97,5 +97,5 @@ Mealboxでは、登録しているユーザーは商品(弁当)を選択し、�
 - Laravel 8.35.1
 - docker 20.10.5
 - docker-compose 1.28.5
-- nginx
+- nginx 1.18.0
 - mysql Ver 14.14
