@@ -6,14 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ユーザー登録フォーム</title>
   <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}" defer></script>
+  <script src="{{ secure_asset('/js/app.js') }}" defer></script>
   <!-- Styles -->
-  @if (app('env') == 'heroku')
-    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ secure_asset('css/signin.css') }}" rel="stylesheet">
+  @if (app('env') == 'production')
+    <link href="{{ secure_asset('/css/app.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('/css/signin.css') }}" rel="stylesheet">
   @else
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/signin.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/signin.css') }}" rel="stylesheet">
   @endif
 </head>
 <body style="background: url('{{ asset('home-image.jpg') }}'); background-size: cover; background-size: cover; background-color:rgba(255,255,255,0.2); background-blend-mode:lighten;">
