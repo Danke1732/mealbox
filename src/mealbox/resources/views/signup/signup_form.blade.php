@@ -8,8 +8,13 @@
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
   <!-- Styles -->
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/signin.css') }}" rel="stylesheet">
+  @if (app('env') == 'heroku')
+    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/signin.css') }}" rel="stylesheet">
+  @else
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/signin.css') }}" rel="stylesheet">
+  @endif
 </head>
 <body style="background: url('{{ asset('home-image.jpg') }}'); background-size: cover; background-size: cover; background-color:rgba(255,255,255,0.2); background-blend-mode:lighten;">
   @include('shared/header')
