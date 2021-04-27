@@ -138,6 +138,10 @@ class AdminController extends Controller
      */
     function adminOrderDelete($id)
     {
+        if (empty($id)) {
+            return redirect()->route('admin.order_list');
+        }
+
         try {
             Order::destroy($id);
         } catch(\Throwable $e) {
