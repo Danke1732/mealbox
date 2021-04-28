@@ -8,6 +8,8 @@ use Tests\TestCase;
 use DatabaseMigrations;
 use App\Models\User;
 use App\Models\Food;
+use App\Models\Order;
+use App\Models\Place;
 
 class AuthTest extends TestCase
 {
@@ -65,15 +67,11 @@ class AuthTest extends TestCase
         $response->assertStatus(200);
 
         // "商品詳細"への遷移テスト(ログイン済)
-        $response = $this->actingAs($user)->get('/food/1');
-        $response->assertStatus(200);
-
-        // ログアウト処理テスト
-        $response = $this->actingAs($user)->get('/user/1');
+        $response = $this->actingAs($user)->get('/food/5');
         $response->assertStatus(200);
 
         // "ログインユーザー詳細"への遷移テスト(ログイン済)
-        $response = $this->actingAs($user)->get('/user/1');
+        $response = $this->actingAs($user)->get('/user/3');
         $response->assertStatus(200);
 
         // --- 管理者ページへ遷移できないテスト
@@ -142,7 +140,7 @@ class AuthTest extends TestCase
         // ログイン用ユーザーを作成
         $user = User::factory()->create();
 
-        // ログイン処理テスト
+        // ログアウト処理テスト
         $response = $this->actingAs($user)->post(route('logout'));
         $response->assertStatus(302)->assertRedirect('/');
     }

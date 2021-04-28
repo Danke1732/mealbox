@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Order;
+use App\Models\User;
+use App\Models\Food;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class OrderFactory extends Factory
@@ -24,6 +26,8 @@ class OrderFactory extends Factory
         return [
             'number' => 1,
             'total_price' => $this->faker->numberBetween($min = 0, $max = 1500),
+            'user_id' => User::factory(),
+            'food_id' => Food::factory(),
         ];
     }
 }
