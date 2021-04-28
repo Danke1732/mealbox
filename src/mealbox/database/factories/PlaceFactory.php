@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Place;
+use App\Models\Order;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PlaceFactory extends Factory
@@ -23,6 +24,7 @@ class PlaceFactory extends Factory
     {
         return [
             'address' => $this->faker->streetAddress,
+            'order_id' => Order::factory(),
         ];
     }
 }

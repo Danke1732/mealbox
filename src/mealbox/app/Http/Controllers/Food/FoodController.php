@@ -56,7 +56,7 @@ class FoodController extends Controller
 				\DB::commit();
 			} catch(\Throwable $e) {
 				\DB::rollback();
-				abort(500);
+				return redirect()->route('food.form');
 			}
 		}
 

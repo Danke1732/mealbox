@@ -6,14 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>商品登録フォーム</title>
   <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}" defer></script>
+  <script src="{{ secure_asset('/js/app.js') }}" defer></script>
   <!-- Styles -->
   @if (app('env') == 'heroku')
-    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ secure_asset('css/form-validation.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('/css/app.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('/css/form-validation.css') }}" rel="stylesheet">
   @else
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/form-validation.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/form-validation.css') }}" rel="stylesheet">
   @endif
 </head>
 <body style="background-image: url('{{ asset('edit-form-image.jpg') }}'); background-size: cover; background-color:rgba(255, 255, 255, 0.3); background-blend-mode:lighten; border-radius: 0;">

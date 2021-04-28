@@ -19,7 +19,7 @@ class CreatePlacesTable extends Migration
             $table->bigInteger('order_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
         });
     }
 
