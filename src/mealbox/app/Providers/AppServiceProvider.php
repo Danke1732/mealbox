@@ -29,10 +29,12 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         /**
-         * 本番環境https化
+         * 本番環境httpsにする
          */
         if (\App::environment('heroku')) {
             \URL::forceScheme('https');
+            // 本番環境ページネーション2ページ目httpsにする
+            $this->app['request']->server->set('HTTPS', 'on');
         }
     }
 }
