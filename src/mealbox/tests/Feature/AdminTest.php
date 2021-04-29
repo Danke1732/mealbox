@@ -33,35 +33,35 @@ class AdminTest extends TestCase
 
         // 管理者ログイン画面への遷移テスト(ログイン未)
         $response = $this->get(route('admin.showLogin'));
-        $response->assertStatus(200);
+        $response->assertStatus(200)->assertViewIs('admin.admin_login');
 
         // 商品登録フォーム画面への遷移テスト(ログイン未)
         $response = $this->get(route('food.form'));
-        $response->assertStatus(302);
+        $response->assertStatus(302)->assertRedirect(route('admin.showLogin'));
 
         // 商品編集フォーム画面への遷移テスト(ログイン未)
         $response = $this->get('/admin/food_edit/1');
-        $response->assertStatus(302);
+        $response->assertStatus(302)->assertRedirect(route('admin.showLogin'));
 
         // 商品管理一覧画面への遷移テスト(ログイン未)
         $response = $this->get(route('admin.food_list'));
-        $response->assertStatus(302);
+        $response->assertStatus(302)->assertRedirect(route('admin.showLogin'));
 
         // 注文管理一覧画面への遷移テスト(ログイン未)
         $response = $this->get(route('admin.order_list'));
-        $response->assertStatus(302);
+        $response->assertStatus(302)->assertRedirect(route('admin.showLogin'));
 
         // 管理者ホーム画面への遷移テスト(ログイン未)
         $response = $this->get(route('admin.top'));
-        $response->assertStatus(302);
+        $response->assertStatus(302)->assertRedirect(route('admin.showLogin'));
 
         // ユーザー一覧画面への遷移テスト(ログイン未)
         $response = $this->get(route('admin.user_list'));
-        $response->assertStatus(302);
+        $response->assertStatus(302)->assertRedirect(route('admin.showLogin'));
 
         // ユーザー詳細画面への遷移テスト(ログイン未)
         $response = $this->get('/admin/user_detail/{{ $user->id }}');
-        $response->assertStatus(302);
+        $response->assertStatus(302)->assertRedirect(route('admin.showLogin'));
  
 
         // --- 管理者ユーザーページ遷移ログイン済みテスト ---
@@ -72,31 +72,31 @@ class AdminTest extends TestCase
 
         // 商品登録フォーム画面への遷移テスト(ログイン済み)
         $response = $this->withSession(['admin_auth' => true])->get(route('food.form'));
-        $response->assertStatus(200);
+        $response->assertStatus(200)->assertViewIs('admin.upload_form');
 
         // 商品編集フォーム画面への遷移テスト(ログイン済み)
         $response = $this->withSession(['admin_auth' => true])->get('/admin/food_edit/1');
-        $response->assertStatus(200);
+        $response->assertStatus(200)->assertViewIs('admin.edit_form');
 
         // 商品管理一覧画面への遷移テスト(ログイン済み)
         $response = $this->withSession(['admin_auth' => true])->get(route('admin.food_list'));
-        $response->assertStatus(200);
+        $response->assertStatus(200)->assertViewIs('admin.food_list');
 
         // 注文管理一覧画面への遷移テスト(ログイン済み)
         $response = $this->withSession(['admin_auth' => true])->get(route('admin.order_list'));
-        $response->assertStatus(200);
+        $response->assertStatus(200)->assertViewIs('admin.order_list');
 
         // 管理者ホーム画面への遷移テスト(ログイン済み)
         $response = $this->withSession(['admin_auth' => true])->get(route('admin.top'));
-        $response->assertStatus(200);
+        $response->assertStatus(200)->assertViewIs('admin.admin_top');
 
         // ユーザー一覧画面への遷移テスト(ログイン済み)
         $response = $this->withSession(['admin_auth' => true])->get(route('admin.user_list'));
-        $response->assertStatus(200);
+        $response->assertStatus(200)->assertViewIs('admin.user_list');
 
         // ユーザー詳細画面への遷移テスト(ログイン済み)
         $response = $this->withSession(['admin_auth' => true])->get('/admin/user_detail/1');
-        $response->assertStatus(200);
+        $response->assertStatus(200)->assertViewIs('admin.user_detail');
     }
 
     /**
@@ -150,5 +150,37 @@ class AdminTest extends TestCase
         
         $response = $this->withSession(['admin_auth' => true])->post('/admin/order_delete/1');
         $response->assertStatus(302)->assertRedirect(route('admin.top'));
+    }
+
+    /**
+     * 商品登録処理のテスト
+     * @return void
+     */
+    public function testAdminUpload()
+    {
+        // 商品データの作成
+        $food = Food::factory()->make();
+        // dd($food);
+        // フェイクディスクの作成
+        // storage/framework/testing/disks/testImagesに保存用ディスクが作成される
+        // (指定しなければtestImagesではなく、localフォルダが保存用に使用される)
+        Storage::fake('testImages');
+        // Storage::persistentFake('testImages'); テスト後も画像ファイルが残る
+
+        // UploadedFileクラスを用意
+        $file = UploadedFile::fake()->image('testImage.jpg', 500, 400)->size(1000);
+        // 作成した画像を移動
+        $file->move('storage/framework/testing/disks/testImages');
+
+        // 商品アップロード処理テスト
+        $response = $this->withSession(['admin_auth' => true])->post(route('food.upload'), [
+            'name' => $food['name'],
+            'price' => $food['price'],
+            'description' => $food['description'],
+            'image' => $file,
+        ]);
+
+        // storage/framework/testing/disks/testImages内に該当ファイルが存在するか
+        Storage::disk('testImages')->assertExists($file->getFileName());
     }
 }
