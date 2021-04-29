@@ -43,7 +43,7 @@ password : laravel
 
     - 注文された内容を削除することができる。
 
-      [![注文削除](https://i.gyazo.com/fe1ba46720dfe248c71a5115e7a60f30.gif)](注文削除)
+      [![Image from Gyazo](https://i.gyazo.com/c2596c6d05f28130d4f1ae5222533eef.gif)](https://gyazo.com/c2596c6d05f28130d4f1ae5222533eef)
 
 ## 目指した課題解決
 - 商品管理部門が商品(弁当)の注文確認ミスがなくなるようにする。
