@@ -4,6 +4,8 @@
 
 Mealboxでは、登録しているユーザーは商品(弁当)を選択し、注文することができます。
 
+管理者は、注文の管理全般を行うことができます。
+
 ## App URL
 
 [https://mealbox-app.herokuapp.com/](https://mealbox-app.herokuapp.com/ "MealBox")
