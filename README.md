@@ -4,6 +4,8 @@
 
 Mealboxでは、登録しているユーザーは商品(弁当)を選択し、注文することができます。
 
+管理者は、注文の管理全般を行うことができます。
+
 ## App URL
 
 [https://mealbox-app.herokuapp.com/](https://mealbox-app.herokuapp.com/ "MealBox")
@@ -43,7 +45,7 @@ password : laravel
 
     - 注文された内容を削除することができる。
 
-      [![注文削除](https://i.gyazo.com/fe1ba46720dfe248c71a5115e7a60f30.gif)](注文削除)
+      [![注文削除機能](https://i.gyazo.com/afd30f69347fc4bef8dd539878034a83.gif)](https://gyazo.com/afd30f69347fc4bef8dd539878034a83)
 
 ## 目指した課題解決
 - 商品管理部門が商品(弁当)の注文確認ミスがなくなるようにする。
