@@ -19,14 +19,14 @@ Mealboxでは、登録しているユーザーは商品(弁当)を選択し、�
 会社で勤務している方、大規模な団体、組織をターゲットとしてアプリケーションを作成します。
 
 ## テスト用アカウント(一般ユーザー)
-personal ID : test1 
+Personal ID : test1 
 
-password : test1
+Password : test1
 
 ## テスト用アカウント(管理者ユーザー)
-admin ID : laravel 
+Admin ID : laravel 
 
-password : laravel
+Password : laravel
 
 ## 利用方法
 - ### 登録ユーザー
