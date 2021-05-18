@@ -106,7 +106,7 @@ Password : laravel
 - hasOne :place
 
 ## places テーブル
-
+ 
 | Column         | Type           | Options                        |
 | -------------- | -------------  | ------------------------------ |
 | address        | string         | null: false                    |
